@@ -1,0 +1,20 @@
+plugins {
+    id 'fabric-loom'
+}
+
+repositories {
+    maven {
+        name = "legacy-fabric"
+        url = "https://repo.legacyfabric.net/repository/legacyfabric/"
+    }
+    mavenLocal()
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:1.8.9"
+    mappings "net.legacyfabric:yarn:1.8.9+build.458"
+    modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
+
+    implementation(project(":common"))
+    //modRuntimeOnly ("com.github.zarzelcow:legacy-lwjgl3:1.0.0")
+}
