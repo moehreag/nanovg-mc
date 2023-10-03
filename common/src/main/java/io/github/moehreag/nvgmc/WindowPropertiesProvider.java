@@ -4,4 +4,6 @@ public interface WindowPropertiesProvider {
 
 	int getHeight();
 	int getWidth();
+
+	float getScaleFactor();
 }

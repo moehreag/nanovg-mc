@@ -57,6 +57,10 @@ public class NVGMC {
 	}
 
 	public static void wrap(Consumer<Long> run){
+		wrap(true, run);
+	}
+
+	public static void wrap(boolean scale, Consumer<Long> run){
 
 		long ctx = getNvgContext();
 
@@ -65,6 +69,11 @@ public class NVGMC {
 		NanoVG.nvgBeginFrame(ctx, width,
 				height,
 				(float) width / height);
+
+		if (scale){
+			float factor = propertiesProvider.getScaleFactor();
+			NanoVG.nvgScale(ctx, factor, factor);
+		}
 
 		run.accept(ctx);
 

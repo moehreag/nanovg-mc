@@ -8,6 +8,7 @@ repositories {
         url = "https://repo.legacyfabric.net/repository/legacyfabric/"
     }
     mavenLocal()
+    mavenCentral()
 }
 
 /*base {
@@ -36,19 +37,22 @@ dependencies {
     mappings "net.legacyfabric:yarn:1.8.9+build.458"
     modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
 
-    implementation include(project(":common"))
+    implementation include(project(path: ":common", configuration: "shadow"))
     modRuntimeOnly "com.github.moehreag:legacy-lwjgl3:895d621496"
     platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
 
-    runtimeOnly "org.lwjgl:lwjgl::$lwjglNatives"
-    runtimeOnly "org.lwjgl:lwjgl-assimp::$lwjglNatives"
-    runtimeOnly "org.lwjgl:lwjgl-glfw::$lwjglNatives"
-    runtimeOnly "org.lwjgl:lwjgl-openal::$lwjglNatives"
-    runtimeOnly "org.lwjgl:lwjgl-opengl::$lwjglNatives"
-    runtimeOnly "org.lwjgl:lwjgl-stb::$lwjglNatives"
+    runtimeOnly "org.lwjgl:lwjgl:$lwjglVersion:$lwjglNatives"
+    runtimeOnly "org.lwjgl:lwjgl-assimp:$lwjglVersion:$lwjglNatives"
+    runtimeOnly "org.lwjgl:lwjgl-glfw:$lwjglVersion:$lwjglNatives"
+    runtimeOnly "org.lwjgl:lwjgl-openal:$lwjglVersion:$lwjglNatives"
+    runtimeOnly "org.lwjgl:lwjgl-opengl:$lwjglVersion:$lwjglNatives"
+    runtimeOnly "org.lwjgl:lwjgl-stb:$lwjglVersion:$lwjglNatives"
 }
 
 configurations.configureEach {
     // Removes LWJGL2 dependencies
     exclude group: "org.lwjgl.lwjgl"
 }
+
+compileJava.dependsOn(project(":common").jar)
+remapSourcesJar.dependsOn(project(":common").jar)

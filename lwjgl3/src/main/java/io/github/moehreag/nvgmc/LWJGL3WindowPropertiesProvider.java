@@ -12,4 +12,9 @@ public class LWJGL3WindowPropertiesProvider implements WindowPropertiesProvider 
 	public int getWidth() {
 		return MinecraftClient.getInstance().getWindow().getWidth();
 	}
+
+	@Override
+	public float getScaleFactor(){
+		return (float) MinecraftClient.getInstance().getWindow().getScaleFactor();
+	}
 }
