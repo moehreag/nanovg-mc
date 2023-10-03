@@ -20,6 +20,7 @@ allprojects {
 	}
 
 	repositories {
+		maven { url 'https://jitpack.io' }
 		mavenCentral()
 		mavenLocal()
 	}
@@ -67,6 +68,10 @@ dependencies {
 	include (api 'org.lwjgl:lwjgl-nanovg:3.3.2:natives-windows-arm64')
 	include (api 'org.lwjgl:lwjgl-nanovg:3.3.2:natives-macos')
 	include (api 'org.lwjgl:lwjgl-nanovg:3.3.2:natives-macos-arm64')
+
+	include implementation(project(":lwjgl2"))
+	include implementation(project(":lwjgl3"))
+	include implementation(project(':common'))
 }
 
 jar {
@@ -74,9 +79,9 @@ jar {
 		rename { "${it}_${project.base.archivesName.get()}" }
 	}
 
-	from(project(":common").sourceSets.main.output)
-	from(project(":lwjgl2").sourceSets.main.output)
-	from(project(":lwjgl3").sourceSets.main.output)
+	//from(project(":common").sourceSets.main.output)
+	//from(project(":lwjgl2").sourceSets.main.output)
+	//from(project(":lwjgl3").sourceSets.main.output)
 }
 
 sourcesJar {
@@ -84,7 +89,7 @@ sourcesJar {
 		rename { "${it}_${project.base.archivesName.get()}" }
 	}
 
-	from(project(":common").sourceSets.main.output)
-	from(project(":lwjgl2").sourceSets.main.output)
-	from(project(":lwjgl3").sourceSets.main.output)
+	//from(project(":common").sourceSets.main.output)
+	//from(project(":lwjgl2").sourceSets.main.output)
+	//from(project(":lwjgl3").sourceSets.main.output)
 }
